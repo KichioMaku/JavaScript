@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main>
+        <div class="container">
+            <div>
+                <form class = "inputForm">
+                    <label>Pierwsza wartość:</label><br>
+                    <input class="input" type="number" id="firstnumber"><br>
+                    <label>Druga wartość:</label><br>
+                    <input class="input" type="number" id="secondnumber"><br>
+                    <label>Trzecia wartość:</label><br>
+                    <input class="input" type="number" id="thirdnumber"><br>
+                    <label>Czwarta wartość:</label><br>
+                    <input class="input" type="number" id="fourthnumber">
+                </form>
+                    <button id="calculate">Przelicz</button>
+            </div class = "output">
+                <form>
+                    <label>Suma:</label> <br>
+                    <input id="sum" type="text" value="" readonly="readonly"> <br>
+                    <label>Średnia:</label> <br>
+                    <input type="text" value="" readonly="readonly"><br>
+                    <label>Wartość min:</label> <br>
+                    <input type="text" value="" readonly="readonly"> <br>
+                    <label>Wartość max:</label>:</label> <br>
+                    <input type="text" value="" readonly="readonly"> <br>
+              </form>
+            </div>
+        </div>
+    </main>
+
+    <script type="text/javascript">
+        const mainContainer = document.querySelector('.container') 
+        const allInputs = document.querySelectorAll('.input')
+        const calculateButton = document.querySelector('#calculate')
+        const sumText = document.querySelector('#sum')
+        console.log(allInputs)
+
+calculateButton.addEventListener('click', function () {
+    sumText.value ="";
+    let temp = 0;
+    allInputs.forEach(element => {
+        temp += Number(element.value);
+    });
+sumText.value = temp;
+});
+
+    </script>
+</body>
+</html>
