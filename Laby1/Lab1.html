@@ -11,7 +11,7 @@
     <main>
         <div class="container">
             <div>
-                <form class = "inputForm">
+                <form class = "inputForm" onchange="calculate()">
                     <label>Pierwsza wartość:</label><br>
                     <input class="input" type="number" id="firstnumber"><br>
                     <label>Druga wartość:</label><br>
@@ -23,15 +23,15 @@
                 </form>
                     <button id="calculate">Przelicz</button>
             </div class = "output">
-                <form>
+                <form > 
                     <label>Suma:</label> <br>
-                    <input id="sum" type="text" value="" readonly="readonly"> <br>
+                    <input id="sum" type="text" value="" readonly="readonly" > <br>
                     <label>Średnia:</label> <br>
-                    <input type="text" value="" readonly="readonly"><br>
+                    <input id="mean" type="text" value="" readonly="readonly"><br>
                     <label>Wartość min:</label> <br>
-                    <input type="text" value="" readonly="readonly"> <br>
-                    <label>Wartość max:</label>:</label> <br>
-                    <input type="text" value="" readonly="readonly"> <br>
+                    <input id="min" type="text" value="" readonly="readonly"> <br>
+                    <label>Wartość max:</label></label> <br>
+                    <input id="max" type="text" value="" readonly="readonly"> <br>
               </form>
             </div>
         </div>
@@ -42,15 +42,31 @@
         const allInputs = document.querySelectorAll('.input')
         const calculateButton = document.querySelector('#calculate')
         const sumText = document.querySelector('#sum')
-        console.log(allInputs)
+        const avgText = document.querySelector("#mean")
+        const maxText = document.querySelector("#max")
+        const minText = document.querySelector("#min")
+
+
+function calculate(){
+
+    let tempSum = 0;
+    let tempAvg = 0;
+    const tab = [];
+    allInputs.forEach(element => {
+        tab.push(Number(element.value));
+        tempSum += Number(element.value);
+        tempAvg = tempSum/allInputs.length;
+    });
+sumText.value = tempSum;
+avgText.value = tempAvg;
+
+maxText.value = Math.max(...tab);
+minText.value = Math.min(...tab);
+
+}
 
 calculateButton.addEventListener('click', function () {
-    sumText.value ="";
-    let temp = 0;
-    allInputs.forEach(element => {
-        temp += Number(element.value);
-    });
-sumText.value = temp;
+calculate();
 });
 
     </script>
