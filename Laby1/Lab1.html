@@ -11,17 +11,19 @@
     <main>
         <div class="container">
             <div>
-                <form class = "inputForm" onchange="calculate()">
-                    <label>Pierwsza wartość:</label><br>
-                    <input class="input" type="number" id="firstnumber"><br>
-                    <label>Druga wartość:</label><br>
-                    <input class="input" type="number" id="secondnumber"><br>
-                    <label>Trzecia wartość:</label><br>
-                    <input class="input" type="number" id="thirdnumber"><br>
-                    <label>Czwarta wartość:</label><br>
-                    <input class="input" type="number" id="fourthnumber">
+                <form>
+                    <div id ="inputForm" onchange="calculate()">
+                        <label>Pierwsza wartość:</label><br>
+                        <input id="input" type="number" value="0"><br>
+                        <label>Druga wartość:</label><br>
+                        <input id="input" type="number" value="0"><br>
+                        <label>Trzecia wartość:</label><br>
+                        <input id="input" type="number" value="0"><br>
+                    </div>
                 </form>
                     <button id="calculate">Przelicz</button>
+                    <button onclick="addInput()">Add input</button>
+                    <button onclick="removeInput(), calculate()">Remove input</button>
             </div class = "output">
                 <form > 
                     <label>Suma:</label> <br>
@@ -39,7 +41,7 @@
 
     <script type="text/javascript">
         const mainContainer = document.querySelector('.container') 
-        const allInputs = document.querySelectorAll('.input')
+        const inputForm = document.querySelector('#inputForm')
         const calculateButton = document.querySelector('#calculate')
         const sumText = document.querySelector('#sum')
         const avgText = document.querySelector("#mean")
@@ -47,16 +49,34 @@
         const minText = document.querySelector("#min")
 
 
-function calculate(){
 
-    let tempSum = 0;
-    let tempAvg = 0;
-    const tab = [];
-    allInputs.forEach(element => {
-        tab.push(Number(element.value));
-        tempSum += Number(element.value);
-        tempAvg = tempSum/allInputs.length;
-    });
+function addInput(){
+    let input = document.createElement('input');
+    input.setAttribute("id", "input");
+    input.setAttribute("type", "number");
+    input.setAttribute("value", 0);
+    inputForm.append(input);
+};
+
+function removeInput(){
+let allInputs = document.querySelectorAll('#input');
+if(allInputs.length > 3){
+    let lastInput = allInputs[allInputs.length-1];
+inputForm.removeChild(lastInput);
+};
+
+};
+
+function calculate(){
+const allInputs = document.querySelectorAll('#input');
+let tempSum = 0;
+let tempAvg = 0;
+const tab = [];
+allInputs.forEach(element => {
+    tab.push(Number(element.value));
+    tempSum += Number(element.value);
+    tempAvg = tempSum/allInputs.length;
+});
 sumText.value = tempSum;
 avgText.value = tempAvg;
 
