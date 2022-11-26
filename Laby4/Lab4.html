@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main>
+        <div id="addNote">
+            <button onclick="addNote()" >Add note</button>
+        </div> 
+        <div class="container">
+            <div class="notes">
+                <div class="note">
+                    <img src="noteImg.png"> 
+                </div>
+            </div>
+        </div> 
+        
+    </main>
+
+    <script type="text/javascript">
+        const mainContainer = document.querySelector('.container') 
+        const notes = document.querySelector('.notes')
+
+
+        // const noteToClone = document.querySelector('.note')
+        // const newNote = noteToClone.cloneNode(true)
+
+        
+
+
+function addNote(){
+    const newNote = document.createElement('div');
+        newNote.classList.add('note');
+    const image = new Image();
+    image.src="noteImg.png";
+    newNote.appendChild(image);
+    notes.appendChild(newNote);
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function removeInput(){
+let allInputs = document.querySelectorAll('#input');
+if(allInputs.length > 3){
+    let lastInput = allInputs[allInputs.length-1];
+inputForm.removeChild(lastInput);
+};
+
+};
+
+function calculate(){
+const allInputs = document.querySelectorAll('#input');
+let tempSum = 0;
+let tempAvg = 0;
+const tab = [];
+allInputs.forEach(element => {
+    tab.push(Number(element.value));
+    tempSum += Number(element.value);
+    tempAvg = tempSum/allInputs.length;
+});
+sumText.value = tempSum;
+avgText.value = tempAvg;
+
+maxText.value = Math.max(...tab);
+minText.value = Math.min(...tab);
+
+}
+
+calculateButton.addEventListener('click', function () {
+calculate();
+});
+
+    </script>
+</body>
+</html>

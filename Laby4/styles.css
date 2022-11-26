@@ -1,0 +1,25 @@
+.container{
+    align-content: center;
+    margin-top: 30px;
+    margin-right: auto;
+}
+
+.notes{
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+}
+.note{
+    margin-left: 15px;
+}
+.notes img{
+    width: 400px;
+    height: 400px;
+}
+#addNote{
+   display: grid;
+   width: 300px;
+   height: 50px;
+   font-size: 30px;
+   
+}

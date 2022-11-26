@@ -1,0 +1,2 @@
+korzystać raczej z TimeStampa. 
+Local Storage - gotowy obiekt.  zamiana obiektu na tekst - JSON.stringify(notes). Na odwrót - JSON..
