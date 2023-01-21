@@ -1,11 +1,29 @@
-*,
-*::after,
-*::before{
-    margin: 0;
-    padding: 0;
-    box-sizing: inherit;
+.slider{
+    width: auto;
+    justify-content: center;
+    display: flex;
+}
+.slider_container{
+    max-width: 800px;
+    position: relative;
+    display: flex;
+    align-items: center;
 }
 
-body{
-    box-sizing: border-box;
+.slider_image{
+    height: auto;
+    max-width: 100%;
+}
+
+#slider_button{
+    border: 10px;
+    cursor: pointer;
+    height: 100px;
+    color: black;
+    margin: 0px;
+    opacity: 50%;
+}
+
+#slider_button:hover{
+    background-color: aqua;
 }

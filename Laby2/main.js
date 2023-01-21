@@ -6,6 +6,8 @@ class Slider{
         this.buttonPrevious = null;
         this.image = null;
 
+        this.currentImage = 0;  
+
         this.Selectors = {
             slide: '[data-slide]',
             buttonPrevious: '[data-prev]',
@@ -19,7 +21,8 @@ class Slider{
         this.buttonPrevious = document.querySelector(this.Selectors.buttonPrevious);
 
         this.image = document.createElement('img');
-        this.image.setAttribute('src', this.images[0]);
+        this.image.classList.add('slider_image');
+        this.image.setAttribute('src', this.images[this.currentImage]);
 
 
         this.slide.appendChild(this.image);
