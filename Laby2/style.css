@@ -27,3 +27,9 @@
 #slider_button:hover{
     background-color: aqua;
 }
+
+#slider_button:disabled{
+    opacity: 0.2;
+    cursor: default;
+    pointer-events: none;
+}
