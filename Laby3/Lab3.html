@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,12 +8,98 @@
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <main>
-        
-    </main>
+
+    <button class="start_recording" style="background-color: #176;"> Start recording </button>
+    <button class="start_playing" style="background-color: #176;"> Start playing </button>
+    <form>
+        <label>Pick recording channel (1-4):</label> <br>
+        <input class="channel" type="text" value="1"> <br>
+        <label>Pick playing channel (1-4):</label> <br>
+        <input class="playingChannel" type="text" value="1">
+    </form>
+
+
+    <audio src="./sounds/boom.wav" controls id="s1" style="visibility: hidden;"></audio>
+    <audio src="./sounds/clap.wav" controls id="s2" style="visibility: hidden;"></audio>
+    <audio src="./sounds/hihat.wav" controls id="s3" style="visibility: hidden;"></audio>
+    <audio src="./sounds/kick.wav" controls id="s4" style="visibility: hidden;"></audio>
+    <audio src="./sounds/openhat.wav" controls id="s5" style="visibility: hidden;"></audio>
+    <audio src="./sounds/ride.wav" controls id="s6" style="visibility: hidden;"></audio>
+    <audio src="./sounds/snare.wav" controls id="s7" style="visibility: hidden;"></audio>
+    <audio src="./sounds/tink.wav" controls id="s8" style="visibility: hidden;"></audio>
+    <audio src="./sounds/tom.wav" controls id="s9" style="visibility: hidden;"></audio>
 
     <script type="text/javascript">
+
+        let isRecording = false;
+        let startingTime;
+        let channels = [
+            {},
+            {},
+            {},
+            {}
+        ];
+
+
+        const start = document.querySelector('.start_recording');
+        const play = document.querySelector('.start_playing');
+        document.addEventListener('keypress', onKeyPress);
+        start.addEventListener("click", toggleRecording);
+        play.addEventListener("click", playRecording);
+
+        const KeyToSound = {
+            'a': document.querySelector('#s1'),
+            's': document.querySelector('#s2'),
+            'd': document.querySelector('#s3'),
+            'f': document.querySelector('#s4'),
+            'g': document.querySelector('#s5'),
+            'h': document.querySelector('#s6'),
+            'j': document.querySelector('#s7'),
+            'k': document.querySelector('#s8'),
+            'l': document.querySelector('#s9')
+        };
+
+
+        function onKeyPress(event) {
+            const sound = KeyToSound[event.key];
+            playSound(sound);
+            if (isRecording) {
+                let selectedChannel = document.querySelector('.channel').value - 1;
+                let map = channels[selectedChannel];
+                let timeStamp = performance.now() - startingTime;
+                map[timeStamp] = event.key;
+                console.log(map)
+            }
+        };
+
+        function playSound(sound) {
+            sound.currentTime = 0;
+            sound.play();
+        };
+
+        function toggleRecording() {
+            isRecording = !isRecording;
+            if (isRecording) {
+                start.style.backgroundColor = '#911';
+                startingTime = performance.now();
+                console.log(startingTime)
+            }
+            else {
+                start.style.backgroundColor = '#176';
+            }
+        };
+
+        function playRecording() {
+            let selectedChannel = document.querySelector('.playingChannel').value - 1;
+            let channel = channels[selectedChannel];
+            Object.entries(channel).forEach(([key, value]) => {
+                setTimeout(() => playSound(KeyToSound[value]), key)
+            });
+
+        };
     </script>
 </body>
+
 </html>
