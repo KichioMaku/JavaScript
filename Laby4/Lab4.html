@@ -6,95 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 </head>
-<body>
-    <main>
-        <div id="addNote">
-            <button onclick="addNote()" >Add note</button>
-        </div> 
-        <div class="container">
-            <div class="notes">
-                <div class="note">
-                    <img src="noteImg.png"> 
-                </div>
+<body class="container">
+    <div class="popup_form">
+        <div class="popup">
+            <div class="content">  
+                <header>
+                    <p>Add new note</p>
+                    <i class="uil uil-times"></i>
+                </header> 
+                <form action="#">
+                    <div class="row_title">
+                        <label>Title</label>
+                        <input type="text">
+                    </div>
+                    <div class="row_text">
+                        <label>Note</label>
+                        <textarea></textarea>
+                    </div>
+                    <div class="color_selector">
+                        <label for="note_color">Note color</label>
+                        <input type="color" name="note_color">
+                        <button>Add note</button>
+                    </div>
+
+                </form>
             </div>
-        </div> 
-        
-    </main>
+        </div>
+    </div>
+    <div class="note_keeper">
+        <li class="add_note">        
+            <div class="plus_icon">
+                <i class="uil uil-plus"></i>
+            </div>
+            <p>Add note</p>
+        </li>
+    </div>
 
-    <script type="text/javascript">
-        const mainContainer = document.querySelector('.container') 
-        const notes = document.querySelector('.notes')
-
-
-        // const noteToClone = document.querySelector('.note')
-        // const newNote = noteToClone.cloneNode(true)
-
-        
-
-
-function addNote(){
-    const newNote = document.createElement('div');
-        newNote.classList.add('note');
-    const image = new Image();
-    image.src="noteImg.png";
-    newNote.appendChild(image);
-    notes.appendChild(newNote);
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function removeInput(){
-let allInputs = document.querySelectorAll('#input');
-if(allInputs.length > 3){
-    let lastInput = allInputs[allInputs.length-1];
-inputForm.removeChild(lastInput);
-};
-
-};
-
-function calculate(){
-const allInputs = document.querySelectorAll('#input');
-let tempSum = 0;
-let tempAvg = 0;
-const tab = [];
-allInputs.forEach(element => {
-    tab.push(Number(element.value));
-    tempSum += Number(element.value);
-    tempAvg = tempSum/allInputs.length;
-});
-sumText.value = tempSum;
-avgText.value = tempAvg;
-
-maxText.value = Math.max(...tab);
-minText.value = Math.min(...tab);
-
-}
-
-calculateButton.addEventListener('click', function () {
-calculate();
-});
+    <script src="script.js">
 
     </script>
-</body>
+ 
+</body> 
+</head>
 </html>
