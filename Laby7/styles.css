@@ -1,25 +1,17 @@
-.container{
-    align-content: center;
-    margin-top: 30px;
-    margin-right: auto;
+#cities {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.notes{
-    width: fit-content;
-    height: fit-content;
-    display: flex;
+.city {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  width: 200px;
+  text-align: center;
 }
-.note{
-    margin-left: 15px;
-}
-.notes img{
-    width: 400px;
-    height: 400px;
-}
-#addNote{
-   display: grid;
-   width: 300px;
-   height: 50px;
-   font-size: 30px;
-   
-}
+
+.city img {
+  width: 50px;
+  height: 50px;
